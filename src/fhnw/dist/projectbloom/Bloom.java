@@ -17,17 +17,30 @@ public class Bloom {
     public Bloom(Double p, int n){
         this.p = p;
         this.n = n;
-
         this.m = (int) -((n * Math.log(p)) / (Math.log(2) * Math.log(2))); // geeignete Filtergrösse
-        this.k = (int) -(Math.log(p) / Math.log(2)); //Anzahl Hasfunctions
-
+        this.k = (int) -(Math.log(p) / Math.log(2)); //Anzahl Hashfunctions
         this.list = new boolean[m];
-
         Random r = new Random();
-
         for (int i = 0; i < k; k++){
             hashFunctionList.add(Hashing.murmur3_128(r.nextInt()));
         }
+    }
+
+    public Bloom(Double p, int n, ArrayList<String> aL){
+        this.p = p;
+        this.n = n;
+        this.m = (int) -((n * Math.log(p)) / (Math.log(2) * Math.log(2))); // geeignete Filtergrösse
+        this.k = (int) -(Math.log(p) / Math.log(2)); //Anzahl Hashfunctions
+        this.list = new boolean[m];
+        Random r = new Random();
+        for (int i = 0; i < k; k++){
+            hashFunctionList.add(Hashing.murmur3_128(r.nextInt()));
+        }
+        for (String s : aL){ // Add all words to the list with our nice method ;)
+            this.addString(s);
+        }
+
+
     }
 
     //iterate through all hash functions. If the item at any given position of the array is false,
