@@ -12,7 +12,8 @@ public class Main {
         try (Scanner scanner = new Scanner(wordlist)) {
 
             while (scanner.hasNextLine()){
-                String line = scanner.nextLine();
+                String word = scanner.nextLine();
+
             }
         }
 
