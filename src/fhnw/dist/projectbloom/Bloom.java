@@ -33,7 +33,7 @@ public class Bloom {
         this.k = (int) -(Math.log(p) / Math.log(2)); //Anzahl Hashfunctions
         this.list = new boolean[m];
         Random r = new Random();
-        for (int i = 0; i < k; k++){
+        for (int i = 0; i < k; i++){
             hashFunctionList.add(Hashing.murmur3_128(r.nextInt()));
         }
         for (String s : aL){ // Add all words to the list with our nice method ;)
@@ -49,7 +49,7 @@ public class Bloom {
     public boolean probablyContains(String s){
         for (HashFunction function : hashFunctionList) {
             HashCode hash = function.hashString(s, Charset.defaultCharset());
-            int pos = Math.abs(hash.asInt()) & this.m;
+            int pos = Math.abs(hash.asInt()) % this.m;
             if(!list[pos]){
                 return false;
             }
@@ -62,7 +62,7 @@ public class Bloom {
     public void addString (String s){
         for (HashFunction function : hashFunctionList) {
             HashCode hash = function.hashString(s, Charset.defaultCharset());
-            int pos = Math.abs(hash.asInt()) & this.m;
+            int pos = Math.abs(hash.asInt()) % this.m;
             list[pos] = true;
             }
     }

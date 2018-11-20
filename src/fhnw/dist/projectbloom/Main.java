@@ -33,7 +33,7 @@ public class Main {
         }
 
         System.out.println("expected p=" + p);
-        System.out.println("actual   p=" + MessageFormat.format("{0,number,#.######}", (double)falsePositives / (double)testStrings.size()));
+        System.out.println("actual   p=" + MessageFormat.format("{0,number,#.#########}", (double)falsePositives / (double)testStrings.size()));
 
 
     }
