@@ -28,7 +28,7 @@ public class Bloom {
 
     public Bloom(Double p, int n, ArrayList<String> aL){
         this.p = p;
-        this.n = n;
+        this.n = n; // anzahl Wörter
         this.m = (int) -((n * Math.log(p)) / (Math.log(2) * Math.log(2))); // geeignete Filtergrösse
         this.k = (int) -(Math.log(p) / Math.log(2)); //Anzahl Hashfunctions
         this.list = new boolean[m];
@@ -39,8 +39,6 @@ public class Bloom {
         for (String s : aL){ // Add all words to the list with our nice method ;)
             this.addString(s);
         }
-
-
     }
 
     //iterate through all hash functions. If the item at any given position of the array is false,
@@ -65,5 +63,22 @@ public class Bloom {
             int pos = Math.abs(hash.asInt()) % this.m;
             list[pos] = true;
             }
+        }
+
+    //Getter methods
+    public int getN() {
+        return n;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public int getK() {
+        return k;
+    }
+
+    public double getP() {
+        return p;
     }
 }
